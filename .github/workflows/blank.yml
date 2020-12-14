@@ -1,0 +1,17 @@
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    container: 
+      image: alpine
+      env:
+        WHO: World
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: echo "Hello, ${WHO}"!
