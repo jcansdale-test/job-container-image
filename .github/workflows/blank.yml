@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container: 
-      image: ${{ env.IMAGE }}
+      image: docker.pkg.github.com/${{ github.repository }}/job-container-image
       env:
         WHO: World
 
