@@ -2,12 +2,28 @@ on:
   push:
   workflow_dispatch:
 
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/job-container-image
+
 jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: docker login docker.pkg.github.com -u token -p ${{ github.token }}
+      - run: docker pull alpine
+      - run: docker tag alpine ${{ env.IMAGE }}
+      - run: docker push ${{ env.IMAGE }}
+
   run:
+    needs: [push]
+    
     runs-on: ubuntu-latest
 
     container: 
-      image: alpine
+      image: ${{ env.IMAGE }}
       env:
         WHO: World
 
