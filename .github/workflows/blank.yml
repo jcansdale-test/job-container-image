@@ -26,7 +26,7 @@ jobs:
       image: docker.pkg.github.com/${{ github.repository }}/job-container-image
       credentials:
         username: token
-        password: ${{ github.token }}
+        password: ${{ secrets.READ_PACKAGES_TOKEN }}
       env:
         WHO: World
 
