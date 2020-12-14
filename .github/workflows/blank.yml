@@ -24,6 +24,9 @@ jobs:
 
     container: 
       image: docker.pkg.github.com/${{ github.repository }}/job-container-image
+      credentials:
+        username: token
+        password: ${{ github.token }}
       env:
         WHO: World
 
